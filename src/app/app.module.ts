@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
-import { FormGroup, ReactiveFormsModule } from '@angular/forms';
+
 import { HttpClientModule } from  '@angular/common/http';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './Components/login/login.component';
@@ -19,8 +19,6 @@ import { AngularMaterialModule } from './angular-material/angular-material.modul
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    FormGroup,
-    ReactiveFormsModule,
     HttpClientModule,
     AngularMaterialModule
   ],

@@ -32,10 +32,9 @@ export class LoginComponent implements OnInit {
           password:this.loginForm.value.password
         }
         this.userService.userLogin(this.data).subscribe((response:any)=>{
-          console.log(response)
+          console.log("login response", response)
           localStorage.setItem('token',response.id);
-          this.snackBar.open('user login successful','dismiss', {duration:3000});
-          
+
         }, error=>{
           console.log(error);
         })
