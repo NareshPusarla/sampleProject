@@ -1,6 +1,6 @@
-.container{
+/* .container{
     background-color: black;
-}
+} */
 
 form{
     position: absolute;
@@ -18,7 +18,7 @@ form{
     padding: 15px 0;
     font-size: 20px;
     color: #fff;
-    background-color: blueviolet;
+    background-color: blue;
 }
 
 .details{
@@ -30,8 +30,8 @@ form{
 input{
     background-color: black;
     color: #fff;
-    /* height: 20px; */
 }
+
 
 .box{
     width: 60%;
@@ -48,7 +48,7 @@ a{
 }
 
 .footer{
-    background-color: blueviolet;
+    background-color: blue;
     padding: 10px 0;
     font-size: 17px;
     display: flex;
@@ -56,14 +56,21 @@ a{
     align-content: center;
 }
 
+.checkbox{
+    border: 2px solid black;
+    padding: 10px 0 10px 100px;
+   background-color: black;
+    color: #fff;
+}
+
 button{
-    color: white;
-    background-color: #1f52f9;
-    width: 80px;
+    color: #fff;
+    /* background-color: #1f52f9; */
+    background-color: rgb(7, 10, 7);
+    width: 180px;
     height: 35px;
-    /* position: relative;
-    bottom: 5px; */
     border-radius: 5px;
     border: none;
-    /* border: 1px solid blue; */
+    font-size: 17px;
+    cursor: pointer;
 }

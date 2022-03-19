@@ -6,21 +6,30 @@
                 <mat-form-field appearance="outline" class="box">
                     <mat-label>Email or Phone</mat-label>
                     <input matInput placeholder="Email or phone" formControlName="email">
-                    <mat-error>Enter first name</mat-error>
+                    <mat-error  *ngIf="loginForm.controls['email'].errors && loginForm.controls['email'].errors['required']">Enter email</mat-error>
+                    <mat-error  *ngIf="loginForm.controls['email'].errors && loginForm.controls['email'].errors['email']">Email format is invalid</mat-error>
+                    <mat-error *ngIf="loginForm.controls['email'].errors && loginForm.controls['email'].errors['emailExists']">This email is existed. Please try new email</mat-error>
+                    <!-- <mat-error  *ngIf="loginForm.errors?.['required']">Enter email</mat-error>
+                    <mat-error  *ngIf="loginForm.errors?.['email']">Email format is invalid</mat-error>
+                    <mat-error *ngIf="loginForm.errors?.['emailExists']">This email is existed. Please try new email</mat-error> -->
+                    <mat-progress-spinner matSuffix [mode]="'indeterminate'" [diameter]="20" *ngIf="loginForm.pending"></mat-progress-spinner>
                 </mat-form-field>
             </div>
             <div class="details">
                 <mat-form-field appearance="outline" class="box1">
                     <mat-label>Password</mat-label>
-                    <input matInput type="password" placeholder="Password" formControlName="password">
-                    <mat-error>Enter first name</mat-error>
+                    <input matInput [type]="inputType" placeholder="Password" formControlName="password">
+                    <mat-error>Enter password</mat-error>
                 </mat-form-field>
+            </div>
+            <div class="checkbox">
+                <input type="checkbox" (change)="showPassword($event)" id="icon"> Show Password
             </div>
             <div class="details">
                 <a href="" routerLink="/forget">Forgot password?</a>
             </div>
             <div class="footer">
-                <button>Login</button>
+                <button><b>Click Here To Login</b></button>
             </div>
         </div>
     </form>
