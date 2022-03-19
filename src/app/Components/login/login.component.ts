@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, AsyncValidatorFn, FormBuilder, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { delay, map, Observable, of } from 'rxjs';
 import { UserServiceService } from 'src/app/servie/userService/user-service.service';
 
 @Component({
@@ -10,21 +11,33 @@ import { UserServiceService } from 'src/app/servie/userService/user-service.serv
 })
 export class LoginComponent implements OnInit {
 
-  loginForm !: FormGroup
+  // loginform !: FormGroup;
+  loginForm!:FormGroup;
   submitted = false;
   data:any;
+  inputType:string = "password";
 
-  constructor(private formBuilder: FormBuilder, private userService:UserServiceService, private snackBar:MatSnackBar) { }
+  constructor(private formBuilder: FormBuilder, private userService:UserServiceService) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
     this.loginForm = this.formBuilder.group({
-      email : ['', Validators.required],
-      password : ['', Validators.required]
+      email : new FormControl('', {
+        validators: [Validators.required, Validators.email],
+       asyncValidators : [this.userService.uniqueEmailValidator()],
+        updateOn:'blur',
+      }),
+      password: ['', Validators.required, Validators.minLength(8), Validators.maxLength(15), Validators.pattern('')]
     })
+    
+  }
+
+  showPassword(event:any):void{
+    event.target.checked ? this.inputType = "text": this.inputType = "password"; 
   }
 
   onSubmit(){
     this.submitted = true;
+    console.log("valid data", this.loginForm.value);
     if (this.loginForm.valid) {
         console.log("valid data", this.loginForm.value);
         this.data={
