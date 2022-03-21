@@ -9,22 +9,22 @@ import { HttpServiceService } from '../httpService/http-service.service';
 })
 export class UserServiceService {
 
-  header:any;
+  // header:any;
   
   constructor(private httpService: HttpServiceService) { 
-    this.header={
-      headers:new HttpHeaders({
-        'Content-Type':'application/json'
-      })
-    }
+    // this.header={
+    //   headers:new HttpHeaders({
+    //     'Content-Type':'application/json'
+    //   })
+    // }
   }
 
   userLogin(data:any){
-    return this.httpService.postData('user/login', data, false, this.header)
+    return this.httpService.postData('user/login', data, false)
   }
 
   updatePassword(data:any){
-    return this.httpService.putData('user/reset-password', data, false, this.header)
+    return this.httpService.putData('user/reset-password', data, false)
   }
 
   emailExists(email: string): Observable<boolean>{

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, AsyncValidatorFn, FormBuilder, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 import { delay, map, Observable, of } from 'rxjs';
 import { UserServiceService } from 'src/app/servie/userService/user-service.service';
 
@@ -17,7 +18,7 @@ export class LoginComponent implements OnInit {
   data:any;
   inputType:string = "password";
 
-  constructor(private formBuilder: FormBuilder, private userService:UserServiceService) { }
+  constructor(private formBuilder: FormBuilder, private userService:UserServiceService, private router:Router) { }
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
@@ -26,7 +27,7 @@ export class LoginComponent implements OnInit {
        asyncValidators : [this.userService.uniqueEmailValidator()],
         updateOn:'blur',
       }),
-      password: ['', Validators.required, Validators.minLength(8), Validators.maxLength(15), Validators.pattern('')]
+      password: ['', Validators.required]
     })
     
   }
@@ -47,7 +48,7 @@ export class LoginComponent implements OnInit {
         this.userService.userLogin(this.data).subscribe((response:any)=>{
           console.log("login response", response)
           localStorage.setItem('token',response.id);
-
+          this.router.navigateByUrl("/home")
         }, error=>{
           console.log(error);
         })

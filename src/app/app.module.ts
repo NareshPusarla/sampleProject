@@ -2,12 +2,13 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
-
-import { HttpClientModule } from  '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from  '@angular/common/http';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './Components/login/login.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AngularMaterialModule } from './angular-material/angular-material.module';
+import {LazyModuleModule} from './lazy-module/lazy-module.module'
+import { CommonInterceptorInterceptor } from './common-interceptor.interceptor';
 
 
 @NgModule({
@@ -20,9 +21,12 @@ import { AngularMaterialModule } from './angular-material/angular-material.modul
     AppRoutingModule,
     BrowserAnimationsModule,
     HttpClientModule,
-    AngularMaterialModule
+    AngularMaterialModule,
+    LazyModuleModule
   ],
-  providers: [],
+  providers: [
+    {provide : HTTP_INTERCEPTORS, useClass:CommonInterceptorInterceptor, multi:true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
