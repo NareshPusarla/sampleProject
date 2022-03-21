@@ -5,10 +5,12 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material/input';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
-
+import {SamplePageComponent} from '../angular-material/components/sample-page/sample-page.component';
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    SamplePageComponent
+  ],
   imports: [
     CommonModule,
     ReactiveFormsModule,
@@ -18,6 +20,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
     MatProgressSpinnerModule
   ],
   exports: [
+    SamplePageComponent,
     ReactiveFormsModule,
     MatFormFieldModule,
     MatInputModule,
